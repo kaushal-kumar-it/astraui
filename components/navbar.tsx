@@ -24,7 +24,6 @@ export default function Navbar() {
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
 
-        {/* Logo */}
         <Link href="/">
           <motion.div
             whileHover={{ color: "#9f56ef", scale: 1.03 }}
@@ -43,7 +42,6 @@ export default function Navbar() {
           </motion.div>
         </Link>
 
-        {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <motion.div
@@ -66,7 +64,6 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Desktop CTA */}
         <div className="hidden md:block">
           <motion.button
             whileHover={{
@@ -81,7 +78,6 @@ export default function Navbar() {
           </motion.button>
         </div>
 
-        {/* Mobile Menu Button */}
         <button
           className="md:hidden p-2 text-foreground"
           onClick={() => setIsOpen(!isOpen)}
@@ -94,7 +90,6 @@ export default function Navbar() {
           </motion.div>
         </button>
 
-        {/* Mobile Navigation */}
         <AnimatePresence>
           {isOpen && (
             <motion.div

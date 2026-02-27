@@ -34,7 +34,6 @@ export function HoverBorderGradient({
       whileHover="hover"
       className={`relative inline-block p-[2px] rounded-full ${containerClassName}`}
     >
-      {/* Animated Gradient Border */}
       <motion.div
         variants={{
           hover: {

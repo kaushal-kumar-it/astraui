@@ -11,10 +11,9 @@ export function StarsBackground() {
     if (!ctx) return;
 
     let animationFrameId: number;
-    let speed = 0.5; // Constant, gentle movement speed
+    let speed = 0.5;
     const numStars = 600;
-    
-    // Initialize stars
+
     const stars: { x: number; y: number; z: number }[] = Array.from({ length: numStars }, () => ({
       x: Math.random() * 2000 - 1000,
       y: Math.random() * 2000 - 1000,
@@ -29,7 +28,6 @@ export function StarsBackground() {
     resize();
 
     const draw = () => {
-      // Trail effect (Motion Blur)
       ctx.fillStyle = "rgba(10, 10, 10, 0.3)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -65,11 +63,10 @@ export function StarsBackground() {
     };
   }, []);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      // Fixed to screen, pushed to the back, ignores mouse clicks
-      className="fixed inset-0 w-full h-full -z-10 pointer-events-none"
-    />
-  );
+    return (
+      <canvas
+        ref={canvasRef}
+        className="fixed inset-0 w-full h-full -z-10 pointer-events-none"
+      />
+    );
 }

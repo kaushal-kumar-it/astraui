@@ -1,12 +1,14 @@
 import Navbar from "@/components/navbar";
 import Hero from "@/components/hero";
 import Features from "@/components/features";
+import Footer from "@/components/footer";
 export default function Home() {
   return (
     <div>
       <Navbar />
       <Hero />
       <Features />
+      <Footer />
       <main className="pt-20">
         <h1 className="text-4xl font-bold text-center">Welcome to Tailwind UI</h1>
         <p className="text-center mt-4 text-lg text-muted-foreground">
