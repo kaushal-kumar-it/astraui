@@ -35,10 +35,10 @@ export default function Navbar() {
               transition={{ type: "spring", stiffness: 300 }}
               className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent to-secondary flex items-center justify-center text-accent-foreground font-bold"
             >
-              T
+              N
             </motion.div>
 
-            <span>Tailwind UI</span>
+            <span>Neel UI</span>
           </motion.div>
         </Link>
 

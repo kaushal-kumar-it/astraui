@@ -35,7 +35,6 @@ export function StarsBackground() {
       stars.forEach((star) => {
         star.z -= speed;
         
-        // Reset star when it passes the camera
         if (star.z <= 0) {
           star.x = Math.random() * 2000 - 1000;
           star.y = Math.random() * 2000 - 1000;

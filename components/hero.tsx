@@ -6,8 +6,6 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Play } from 'lucide-react'
 import Link from 'next/link'
 
-/* Scramble component */
-
 const ScrambleText = ({ text }: { text: string }) => {
   const [displayText, setDisplayText] = useState(text);
 
@@ -41,8 +39,6 @@ const ScrambleText = ({ text }: { text: string }) => {
 
   return <>{displayText}</>;
 };
-
-/* Hero section */
 
 export default function Hero() {
   return (

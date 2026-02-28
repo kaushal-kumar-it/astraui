@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Neel UI Library",
-  description: "A small UI component library",
+  title: "Neel UI",
+  description: "A handcrafted UI component library by Neel.",
 };
 
 export default function RootLayout({

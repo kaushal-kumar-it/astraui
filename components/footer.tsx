@@ -31,13 +31,10 @@ const footerSections = [
 export default function Footer() {
   return (
     <footer className="relative border-t border-border/30 bg-card/50">
-      {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-b from-accent/10 to-transparent rounded-full blur-3xl opacity-20" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-        {/* Main footer content */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
-          {/* Brand section */}
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-2 font-bold text-lg text-foreground mb-4">
               <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent to-secondary flex items-center justify-center text-accent-foreground font-bold">
@@ -48,7 +45,6 @@ export default function Footer() {
             <p className="text-sm text-muted-foreground mb-6">
               Premium React components built with Tailwind CSS for modern web development.
             </p>
-            {/* Social links */}
             <div className="flex gap-4">
               <Link
                 href="#"
@@ -74,7 +70,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Footer links */}
           {footerSections.map((section, index) => (
             <div key={index}>
               <h3 className="font-semibold text-foreground mb-4">{section.title}</h3>
@@ -94,7 +89,6 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Bottom footer */}
         <div className="border-t border-border/30 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
             © 2024 Tailwind UI. All rights reserved.
