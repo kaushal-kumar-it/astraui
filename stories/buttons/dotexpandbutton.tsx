@@ -8,7 +8,7 @@ interface DotExpandButtonProps {
 
 export const DotExpandButton: React.FC<DotExpandButtonProps> = ({ text }) => {
   return (
-    <button className="group flex items-center gap-3 rounded-full bg-zinc-900 px-6 py-3 font-semibold text-zinc-300 transition-colors duration-300 hover:bg-white hover:text-black active:scale-95 hover:cursor-pointer">
+    <button className="group flex items-center gap-2.5 md:gap-3 rounded-full bg-zinc-900 px-5 py-3 md:px-6 font-semibold text-zinc-300 transition-colors duration-300 hover:bg-white hover:text-black active:scale-95 hover:cursor-pointer">
 
       <div className="relative flex h-8 w-8 items-center justify-center">
         <span className="absolute h-2 w-2 rounded-full bg-white transition-all duration-300 group-hover:h-full group-hover:w-full group-hover:bg-black" />
@@ -25,7 +25,7 @@ export const DotExpandButton: React.FC<DotExpandButtonProps> = ({ text }) => {
         </svg>
       </div>
 
-      <span className="transition-transform duration-300 group-hover:translate-x-1">
+      <span className="transition-transform duration-300 group-hover:translate-x-1 text-sm md:text-base">
         {text}
       </span>
 

@@ -11,7 +11,7 @@ interface GradientBorderCardProps {
 
 export const GradientBorderCard: React.FC<GradientBorderCardProps> = ({
   children,
-  className = "p-8",
+  className = "p-6 md:p-8",
   gradientColors = "#00ffcc, #ff0054, #00ffcc",
   animationSpeed = "3s",
 }) => {

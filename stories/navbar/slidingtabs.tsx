@@ -38,7 +38,7 @@ export const SlidingTabs: React.FC<SlidingTabsProps> = ({
   return (
     <div
       ref={containerRef}
-      className="relative flex max-w-full overflow-x-auto items-center rounded-full bg-zinc-900/50 p-1 backdrop-blur-md border border-zinc-800 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+      className="relative flex max-w-full overflow-x-auto items-center rounded-full bg-zinc-900/50 p-1 md:p-1.5 backdrop-blur-md border border-zinc-800 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
     >
       <div
         className="absolute bottom-1 top-1 rounded-full bg-zinc-700 transition-all duration-300 ease-out z-0"
@@ -50,7 +50,7 @@ export const SlidingTabs: React.FC<SlidingTabsProps> = ({
           key={tab.id}
           data-id={tab.id}
           onClick={() => setActiveTab(tab.id)}
-          className={`relative z-10 px-4 md:px-6 py-2 text-sm font-medium transition-colors duration-300 ease-out rounded-full whitespace-nowrap shrink-0 ${
+          className={`relative z-10 px-3.5 md:px-6 py-2 text-sm font-medium transition-colors duration-300 ease-out rounded-full whitespace-nowrap shrink-0 ${
             activeTab === tab.id ? 'text-white' : 'text-zinc-400 hover:text-zinc-200 hover:cursor-pointer'
           }`}
         >

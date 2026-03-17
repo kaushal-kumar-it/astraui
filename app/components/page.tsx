@@ -76,7 +76,7 @@ export default function ComponentsPage() {
   );
 
   return (
-    <div className="flex min-h-screen bg-black text-white font-sans">
+    <div className="flex min-h-screen bg-black text-white font-sans overflow-x-hidden">
 
       <aside className="scrollbar-thin hidden md:flex flex-col w-60 shrink-0 fixed top-0 left-0 h-screen border-r border-zinc-900 px-4 py-8 overflow-y-auto z-30">
         {navContent}
@@ -110,7 +110,7 @@ export default function ComponentsPage() {
         </div>
       )}
 
-      <main className="flex-1 md:ml-60 px-4 py-8 md:px-12 md:py-16 mt-[49px] md:mt-0 max-w-4xl">
+      <main className="flex-1 md:ml-60 px-4 py-8 md:px-12 md:py-16 mt-[49px] md:mt-0 w-full overflow-x-hidden">
 
         
         {activePage === 'slidingtabs' && (
@@ -119,8 +119,8 @@ export default function ComponentsPage() {
             description="A sleek navigation menu where the background smoothly glides and resizes behind the active tab."
             codeString={componentCode.slidingTabsFull}
             props={[
-              { name: 'tabs', type: 'Tab[]', description: 'Array of objects containing { id, label }.' },
-              { name: 'defaultActive', type: 'string', description: 'The ID of the tab that should be active on initial load.' },
+              { name: 'tabs', type: 'Tab[]', default: '—', description: 'Array of objects containing { id, label }.' },
+              { name: 'defaultActive', type: 'string', default: 'tabs[0]?.id', description: 'The ID of the tab that should be active on initial load.' },
             ]}
           >
             <div className="flex w-full h-64 items-center justify-center border border-zinc-800 rounded-2xl bg-zinc-950/50">
@@ -142,6 +142,17 @@ export default function ComponentsPage() {
             title="Typewriter Text"
             description="A multi-word looping typewriter with a blinking cursor."
             codeString={componentCode.typewriter}
+            props={[
+              { name: 'staticText', type: 'string', default: '—', description: 'Text prefix displayed before the animated words.' },
+              { name: 'words', type: 'string[]', default: '—', description: 'List of words to loop through.' },
+              { name: 'typingSpeed', type: 'number', default: '80', description: 'Milliseconds per character when typing.' },
+              { name: 'deletingSpeed', type: 'number', default: '40', description: 'Milliseconds per character when deleting.' },
+              { name: 'pauseDuration', type: 'number', default: '2000', description: 'Pause in ms before deleting a completed word.' },
+              { name: 'textColor', type: 'string', default: '#ffffff', description: 'CSS color for the text and cursor.' },
+              { name: 'fontSize', type: 'string', default: 'clamp(1.5rem, 4vw, 3rem)', description: 'Font size value applied to the container.' },
+              { name: 'fontFamily', type: 'string', default: '"Space Grotesk", "Fira Code", monospace', description: 'Custom font stack for the text.' },
+              { name: 'showCursor', type: 'boolean', default: 'true', description: 'Toggle the blinking cursor.' },
+            ]}
           >
             <TypewriterText staticText="We specialize in" words={['Design.', 'Marketing.', 'Growth.']} textColor="#fff" />
           </Showcase>
@@ -152,6 +163,14 @@ export default function ComponentsPage() {
             title="Scramble Text"
             description="Text that continuously scrambles its characters for a dynamic effect."
             codeString={componentCode.scramble}
+            props={[
+              { name: 'text', type: 'string', default: '—', description: 'Final text to resolve to after scrambling.' },
+              { name: 'speed', type: 'number', default: '30', description: 'Interval delay in ms for scramble updates.' },
+              { name: 'color', type: 'string', default: '#ffffff', description: 'Text and glow color.' },
+              { name: 'size', type: 'string', default: '1rem', description: 'Font size value.' },
+              { name: 'fontFamily', type: 'string', default: '"Space Grotesk", "Fira Code", monospace', description: 'Font stack used for the text.' },
+              { name: 'glow', type: 'boolean', default: 'true', description: 'Enable outer glow effect.' },
+            ]}
           >
             <ScrambleText text="SCRAMBLE Text" color="#f87171" />
           </Showcase>
@@ -162,6 +181,14 @@ export default function ComponentsPage() {
             title="Liquid Fill"
             description="Uses an SVG wave to create a liquid rising effect."
             codeString={componentCode.filltext}
+            props={[
+              { name: 'text', type: 'string', default: '—', description: 'Text to render with the fill effect.' },
+              { name: 'baseColor', type: 'string', default: '#ffb3c6', description: 'Base text color before fill.' },
+              { name: 'fillColor', type: 'string', default: '#ff0054', description: 'Color of the animated liquid fill.' },
+              { name: 'size', type: 'string', default: 'clamp(2.5rem, 8vw, 6rem)', description: 'Font size value for the text.' },
+              { name: 'fontFamily', type: 'string', default: '"Arial Black", "Impact", sans-serif', description: 'Font stack for the text.' },
+              { name: 'duration', type: 'number', default: '3000', description: 'Animation duration in ms for the fill.' },
+            ]}
           >
             <FillText text="SYSTEM" baseColor="#bae6fd" fillColor="#0284c7" size="5rem" />
           </Showcase>
@@ -173,6 +200,9 @@ export default function ComponentsPage() {
             title="Dot Expand Button"
             description="A button with a dot that expands into an arrow on hover."
             codeString={componentCode.dotExpand}
+            props={[
+              { name: 'text', type: 'string', default: '—', description: 'Label to display inside the button.' },
+            ]}
           >
             <DotExpandButton text="Learn More" />
           </Showcase>
@@ -183,6 +213,17 @@ export default function ComponentsPage() {
             title="Glowing Border Button"
             description="A button with a continuously spinning glowing border."
             codeString={componentCode.glowingBorder}
+            props={[
+              { name: 'text', type: 'string', default: '—', description: 'Button label.' },
+              { name: 'onClick', type: '() => void', default: '—', description: 'Optional click handler.' },
+              { name: 'gradientColors', type: 'string', default: '#E2CBFF, #393BB2, #E2CBFF', description: 'Comma-separated colors for the spinning conic gradient.' },
+              { name: 'innerBgColor', type: 'string', default: 'bg-zinc-950', description: 'Tailwind class for the inner background.' },
+              { name: 'textColor', type: 'string', default: 'text-white', description: 'Tailwind class for text color.' },
+              { name: 'borderWidth', type: 'string', default: '2px', description: 'Padding applied to create the border thickness.' },
+              { name: 'spinDuration', type: 'string', default: '2s', description: 'CSS duration for the gradient spin.' },
+              { name: 'padding', type: 'string', default: 'px-5 py-2 md:px-8', description: 'Tailwind padding classes for the inner button.' },
+              { name: 'rounded', type: 'string', default: 'rounded-full', description: 'Tailwind rounding classes applied to both layers.' },
+            ]}
           >
             <GlowingBorderButton text="Click Me" gradientColors="#E2CBFF, #393BB2, #E2CBFF" innerBgColor="bg-zinc-950" textColor="text-white" borderWidth="2px" spinDuration="2s" padding="px-8 py-2" rounded="rounded-full" />
           </Showcase>
@@ -193,6 +234,9 @@ export default function ComponentsPage() {
             title="Magnetic Button"
             description="A button that attracts the cursor with a magnetic pull effect."
             codeString={componentCode.magnetic}
+            props={[
+              { name: 'text', type: 'string', default: '—', description: 'Button label.' },
+            ]}
           >
             <MagneticButton text="Hover Me" />
           </Showcase>
@@ -204,6 +248,12 @@ export default function ComponentsPage() {
             title="Gradient Border Card"
             description="A card with a spinning gradient outline."
             codeString={componentCode.gradientCard}
+            props={[
+              { name: 'children', type: 'React.ReactNode', default: '—', description: 'Content to render inside the card.' },
+              { name: 'className', type: 'string', default: 'p-6 md:p-8', description: 'Classes applied to the inner card container.' },
+              { name: 'gradientColors', type: 'string', default: '#00ffcc, #ff0054, #00ffcc', description: 'Comma-separated colors for the spinning border.' },
+              { name: 'animationSpeed', type: 'string', default: '3s', description: 'CSS duration for the border spin animation.' },
+            ]}
           >
             <GradientBorderCard className="w-72 md:w-80 h-96 p-8 flex flex-col items-center justify-center">
               <h3 className="text-2xl font-bold mb-2 text-white">Pro Plan</h3>
@@ -218,6 +268,15 @@ export default function ComponentsPage() {
             title="Interactive Dot Background"
             description="A canvas-based particle network that physically reacts to the mouse."
             codeString={componentCode.interactiveDotsFull}
+            props={[
+              { name: 'dotColor', type: 'string', default: '#00ffcc', description: 'Fill color for the dots.' },
+              { name: 'lineColor', type: 'string', default: '#00ffcc', description: 'Stroke color for connecting lines.' },
+              { name: 'bgColor', type: 'string', default: '#000000', description: 'Canvas background color.' },
+              { name: 'density', type: 'number', default: '180', description: 'Relative particle density (higher = more dots).' },
+              { name: 'speed', type: 'number', default: '1', description: 'Particle velocity multiplier.' },
+              { name: 'mouseInteractionRadius', type: 'number', default: '130', description: 'Radius in px for mouse repulsion.' },
+              { name: 'connectionRadius', type: 'number', default: '110', description: 'Max distance in px to draw connecting lines.' },
+            ]}
           >
             <div className="relative h-64 md:h-[400px] w-full rounded-2xl overflow-hidden border border-zinc-800 flex items-center justify-center">
               <InteractiveDots dotColor="#ff0054" lineColor="#ff0054" bgColor="#000000" />
@@ -234,6 +293,7 @@ export default function ComponentsPage() {
             title="Warp Speed Stars"
             description="A 3D starfield canvas that creates a hyperspace flying effect."
             codeString={componentCode.starsBackgroundFull}
+            props={[]}
           >
             <div className="relative h-64 md:h-[400px] w-full rounded-2xl overflow-hidden border border-zinc-800 flex flex-col items-center justify-center">
               <StarsBackground />
@@ -250,6 +310,12 @@ export default function ComponentsPage() {
             title="Spotlight Grid" 
             description="A hidden grid that is revealed by a mouse-tracking flashlight effect." 
             codeString={componentCode.spotlightGridFull}
+            props={[
+              { name: 'gridColor', type: 'string', default: 'rgba(255, 255, 255, 0.15)', description: 'Grid line color.' },
+              { name: 'bgColor', type: 'string', default: '#000000', description: 'Background color behind the grid.' },
+              { name: 'spotlightSize', type: 'number', default: '320', description: 'Radius in px of the revealed spotlight.' },
+              { name: 'gridSize', type: 'number', default: '32', description: 'Pixel size of grid cells.' },
+            ]}
           >
             <div className="relative h-64 md:h-[400px] w-full rounded-2xl overflow-hidden border border-zinc-800 flex flex-col items-center justify-center">
               <SpotlightGrid gridColor="rgba(0, 255, 204, 0.2)" bgColor="#09090b" spotlightSize={350} />

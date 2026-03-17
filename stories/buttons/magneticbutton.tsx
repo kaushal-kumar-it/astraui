@@ -30,7 +30,7 @@ export const MagneticButton: React.FC<MagneticButtonProps> = ({ text }) => {
       ref={buttonRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative rounded-full bg-white px-8 py-3 font-semibold text-black transition-all duration-200 ease-out hover:bg-zinc-200 hover:cursor-pointer"
+      className="relative rounded-full bg-white px-6 py-3 md:px-8 font-semibold text-black transition-all duration-200 ease-out hover:bg-zinc-200 hover:cursor-pointer"
       style={{
         transform: `translate(${position.x}px, ${position.y}px)`,
       }}

@@ -22,7 +22,7 @@ export const GlowingBorderButton: React.FC<GlowingBorderButtonProps> = ({
   textColor = 'text-white',
   borderWidth = '2px',
   spinDuration = '2s',
-  padding = 'px-8 py-2',
+  padding = 'px-5 py-2 md:px-8',
   rounded = 'rounded-full',
 }) => {
   return (

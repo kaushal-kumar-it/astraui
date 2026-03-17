@@ -12,8 +12,8 @@ interface SpotlightGridProps {
 export const SpotlightGrid: React.FC<SpotlightGridProps> = ({
   gridColor = 'rgba(255, 255, 255, 0.15)', 
   bgColor = '#000000',
-  spotlightSize = 400,
-  gridSize = 40,
+  spotlightSize = 320,
+  gridSize = 32,
 }) => {
   const [mousePos, setMousePos] = useState({ x: -1000, y: -1000 });
 

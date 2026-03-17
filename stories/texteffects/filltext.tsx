@@ -13,7 +13,7 @@ export const FillText: React.FC<FillTextProps> = ({
   text,
   baseColor = '#ffb3c6',
   fillColor = '#ff0054',
-  size = '6rem',
+  size = 'clamp(2.5rem, 8vw, 6rem)',
   fontFamily = '"Arial Black", "Impact", sans-serif',
   duration = 3000,
 }) => {

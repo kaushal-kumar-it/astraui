@@ -16,10 +16,10 @@ export const InteractiveDots: React.FC<InteractiveDotsProps> = ({
   dotColor = '#00ffcc',
   lineColor = '#00ffcc',
   bgColor = '#000000',
-  density = 300,
+  density = 180,
   speed = 1,
-  mouseInteractionRadius = 150,
-  connectionRadius = 120,
+  mouseInteractionRadius = 130,
+  connectionRadius = 110,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
