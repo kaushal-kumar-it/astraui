@@ -651,5 +651,122 @@ export function StarsBackground({ speed = 0.5, density = 600 }: StarsBackgroundP
 }
 
   `,
+spotlightGridFull: `
+'use client';
+
+import React, { useState } from 'react';
+
+interface SpotlightGridProps {
+  gridColor?: string;
+  bgColor?: string;
+  spotlightSize?: number;
+  gridSize?: number;
+}
+
+export const SpotlightGrid: React.FC<SpotlightGridProps> = ({
+  gridColor = 'rgba(255, 255, 255, 0.15)',
+  bgColor = '#000000',
+  spotlightSize = 400,
+  gridSize = 40,
+}) => {
+  const [mousePos, setMousePos] = useState({ x: -1000, y: -1000 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setMousePos({ x: -1000, y: -1000 });
+  };
+
+  return (
+    <div
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="absolute inset-0 w-full h-full overflow-hidden z-0 pointer-events-auto"
+      style={{ backgroundColor: bgColor }}
+    >
+      <div
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        style={{
+          backgroundImage: \`linear-gradient(to right, \${gridColor} 1px, transparent 1px), linear-gradient(to bottom, \${gridColor} 1px, transparent 1px)\`,
+          backgroundSize: \`\${gridSize}px \${gridSize}px\`,
+        }}
+      />
+
+      <div
+        className="absolute inset-0 w-full h-full pointer-events-none transition-opacity duration-300"
+        style={{
+          background: \`radial-gradient(circle \${spotlightSize}px at \${mousePos.x}px \${mousePos.y}px, transparent 0%, \${bgColor} 80%)\`,
+        }}
+      />
+    </div>
+  );
+};`,
+slidingTabsFull: `'use client';
+
+import React, { useEffect, useRef, useState } from 'react';
+
+export interface Tab {
+  id: string;
+  label: string;
+}
+
+interface SlidingTabsProps {
+  tabs: Tab[];
+  defaultActive?: string;
+}
+
+export const SlidingTabs: React.FC<SlidingTabsProps> = ({
+  tabs,
+  defaultActive,
+}) => {
+  const [activeTab, setActiveTab] = useState(defaultActive || tabs[0]?.id);
+  const [pillStyle, setPillStyle] = useState({ left: 0, width: 0, opacity: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const activeElement = containerRef.current.querySelector(
+      \`[data-id="\${activeTab}"]\`
+    ) as HTMLElement | null;
+
+    if (activeElement) {
+      setPillStyle({
+        left: activeElement.offsetLeft,
+        width: activeElement.offsetWidth,
+        opacity: 1,
+      });
+    }
+  }, [activeTab]);
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative inline-flex items-center rounded-full bg-zinc-900/50 p-1 backdrop-blur-md border border-zinc-800"
+    >
+      <div
+        className="absolute bottom-1 top-1 rounded-full bg-zinc-700 transition-all duration-300 ease-out z-0"
+        style={pillStyle}
+      />
+      {tabs.map((tab) => (
+        <button
+          key={tab.id}
+          data-id={tab.id}
+          onClick={() => setActiveTab(tab.id)}
+          className={\`relative z-10 px-6 py-2 text-sm font-medium transition-colors duration-300 ease-out rounded-full \${
+            activeTab === tab.id ? 'text-white' : 'text-zinc-400 hover:text-zinc-200'
+          }\`}
+        >
+          {tab.label}
+        </button>
+      ))}
+    </div>
+  );
+};`
 
 } as const;
