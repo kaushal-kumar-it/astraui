@@ -16,10 +16,13 @@ import { StarsBackground } from '@/components/StarsBackground';
 import { SpotlightGrid } from '@/stories/background/spotlightgrid';
 import { SlidingTabs } from '@/stories/navbar/slidingtabs';
 import { componentCode } from '@/data/coderegistry';
-
+import { FloatingDock } from '@/stories/navbar/floatingdock';
+import { FluidNav } from '@/stories/navbar/fluidnav';
 const NAV_ITEMS = [
   { label: 'NAVIGATION', isGroup: true },
   { id: 'slidingtabs', label: 'Sliding Pill Tabs' },
+  { id: 'floatingdock', label: 'Mac Floating Dock' },
+  { id: 'fluidnav', label: 'Fluid Navigation' },
   { label: 'TEXT EFFECTS', isGroup: true },
   { id: 'typewriter', label: 'Typewriter' },
   { id: 'filltext', label: 'Liquid Fill' },
@@ -34,6 +37,7 @@ const NAV_ITEMS = [
   { id: 'interactivedots', label: 'Interactive Dots' },
   { id: 'starsbg', label: 'Warp Speed Stars' },
   { id: 'spotlightgrid', label: 'Spotlight Grid' },
+
 ] as const;
 
 export default function ComponentsPage() {
@@ -100,7 +104,7 @@ export default function ComponentsPage() {
           )}
         </button>
       </div>
-
+          
       {menuOpen && (
         <div className="md:hidden fixed inset-0 z-30 flex">
           <div className="scrollbar-thin w-72 bg-zinc-950 border-r border-zinc-900 px-4 py-8 overflow-y-auto mt-[49px]">
@@ -111,8 +115,98 @@ export default function ComponentsPage() {
       )}
 
       <main className="flex-1 md:ml-60 px-4 py-8 md:px-12 md:py-16 mt-[49px] md:mt-0 w-full overflow-x-hidden">
+        {activePage === 'floatingdock' && (
+          <Showcase
+            title="Mac Floating Dock"
+            description="A sticky navigation dock with physics-based magnification on hover."
+            codeString={componentCode.floatingDockFull}
+            props={[
+              { name: 'items', type: 'DockItemProps[]', description: 'Array of objects containing { label, icon, href }.' },
+            ]}
+          >
+            <div className="flex w-full h-64 md:h-80 items-end justify-center rounded-2xl bg-zinc-900/50 border border-zinc-800 p-4 md:p-8 relative overflow-hidden">
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
-        
+              <div className="relative z-10 w-full flex justify-center">
+                <FloatingDock 
+                  items={[
+                    {
+                      label: 'Home',
+                      icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+                    },
+                    {
+                      label: 'Profile',
+                      icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                    },
+                    {
+                      label: 'Messages',
+                      icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>
+                    },
+                    {
+                      label: 'Settings',
+                      icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                    }
+                  ]} 
+                />
+              </div>
+            </div>
+          </Showcase>
+        )}
+        {activePage === 'fluidnav' && (
+          <Showcase
+            title="Fluid Mega Menu"
+            description="A Stripe-inspired navigation menu that physically morphs its dimensions to fit the content of the active tab."
+            codeString={componentCode.fluidNavFull}
+            props={[
+              { name: 'items', type: 'FluidNavItem[]', description: 'Array of objects containing { id, label, content }.' },
+            ]}
+          >
+            <div className="w-full h-[420px] md:h-[500px] rounded-2xl bg-zinc-950/50 border border-zinc-800 p-4 md:p-8 overflow-hidden">
+              <FluidNav 
+                items={[
+                  {
+                    id: 'products',
+                    label: 'Products',
+                    content: (
+                      <div className="w-full max-w-[min(86vw,400px)] grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <h4 className="text-white font-bold mb-2">Payments</h4>
+                          <p className="text-zinc-400 text-sm">Accept credit cards and digital wallets securely.</p>
+                        </div>
+                        <div>
+                          <h4 className="text-white font-bold mb-2">Billing</h4>
+                          <p className="text-zinc-400 text-sm">Build recurring subscription models.</p>
+                        </div>
+                      </div>
+                    )
+                  },
+                  {
+                    id: 'developers',
+                    label: 'Developers',
+                    content: (
+                      <div className="w-full max-w-[250px] flex flex-col gap-3">
+                        <a href="#" className="text-zinc-300 hover:text-white transition-colors">Documentation</a>
+                        <a href="#" className="text-zinc-300 hover:text-white transition-colors">API Reference</a>
+                        <a href="#" className="text-zinc-300 hover:text-white transition-colors">Webhooks</a>
+                      </div>
+                    )
+                  },
+                  {
+                    id: 'company',
+                    label: 'Company',
+                    content: (
+                      <div className="w-full max-w-[300px]">
+                        <h4 className="text-white font-bold mb-4">About Neel UI</h4>
+                        <p className="text-zinc-400 text-sm mb-4">We build the most premium, copy-paste React components on the internet.</p>
+                        <button className="w-full bg-white text-black font-semibold py-2 rounded-lg">View Open Roles</button>
+                      </div>
+                    )
+                  }
+                ]} 
+              />
+            </div>
+          </Showcase>
+        )}
         {activePage === 'slidingtabs' && (
           <Showcase
             title="Sliding Pill Tabs"
