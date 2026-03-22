@@ -8,8 +8,8 @@ import Link from "next/link";
 const navLinks = [
   { label: "Components", href: "/components" },
   { label: "Docs", href: "/docs" },
-  { label: "GitHub", href: "https://github.com" },
-  { label: "Support", href: "/formsfree" },
+  { label: "GitHub", href: "https://github.com/kaushal-kumar-it" },
+  { label: "Support", href: "/support" },
 ];
 
 export default function Navbar() {
@@ -65,7 +65,7 @@ export default function Navbar() {
         </div>
 
         <div className="hidden md:block">
-          <motion.button
+          <motion.div
             whileHover={{
               scale: 1.05,
               backgroundColor: "#9f56ef",
@@ -74,8 +74,8 @@ export default function Navbar() {
             transition={{ type: "spring", stiffness: 300 }}
             className="px-6 py-2 rounded-lg bg-accent text-accent-foreground font-semibold"
           >
-            Get Started
-          </motion.button>
+            <Link href="/components">Get Started</Link>
+          </motion.div>
         </div>
 
         <button
@@ -122,13 +122,13 @@ export default function Navbar() {
                   </motion.div>
                 ))}
 
-                <motion.button
+                <motion.div
                   whileHover={{ backgroundColor: "#9f56ef" }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full px-6 py-2 rounded-lg bg-accent text-accent-foreground font-semibold"
+                  className="w-full px-6 py-2 rounded-lg bg-accent text-accent-foreground font-semibold text-center"
                 >
-                  Get Started
-                </motion.button>
+                  <Link href="/components" onClick={() => setIsOpen(false)}>Get Started</Link>
+                </motion.div>
               </div>
             </motion.div>
           )}

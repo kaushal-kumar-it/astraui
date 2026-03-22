@@ -43,7 +43,7 @@ const features = [
   {
     icon: Lock,
     title: "Production Ready",
-    description: "Battle-tested components used in production by thousands of developers.",
+    description: "Built with maintainable patterns that are ready for real production apps.",
   },
   {
     icon: Smartphone,

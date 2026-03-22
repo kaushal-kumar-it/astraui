@@ -1,6 +1,6 @@
 'use client'
 
-import { Github, Twitter, Linkedin } from 'lucide-react'
+import { Github, Linkedin } from 'lucide-react'
 import Link from 'next/link'
 
 const footerSections = [
@@ -14,15 +14,16 @@ const footerSections = [
   {
     title: 'Resources',
     links: [
-      { label: 'Support', href: '/formsfree' },
+      { label: 'Support', href: '/support' },
     ],
   },
   {
     title: 'Company',
     links: [
-      { label: 'About', href: '#' },
-      { label: 'Team', href: '#' },
-      { label: 'Contact', href: '#' },
+      { label: 'About', href: '/about' },
+      { label: 'Team · Kaushal Kumar (GitHub)', href: 'https://github.com/kaushal-kumar-it' },
+      { label: 'Team · Kaushal Kumar (LinkedIn)', href: 'https://www.linkedin.com/in/kaushal-kumar-it' },
+      { label: 'Contact', href: '/support' },
     ],
   },
 ]
@@ -46,23 +47,20 @@ export default function Footer() {
             </p>
             <div className="flex gap-4">
               <Link
-                href="#"
+                href="https://github.com/kaushal-kumar-it"
                 className="p-2 rounded-lg bg-card border border-border/50 text-muted-foreground hover:text-accent hover:border-accent/30 transition-all"
                 aria-label="GitHub"
+                target="_blank"
+                rel="noreferrer"
               >
                 <Github className="w-5 h-5" />
               </Link>
               <Link
-                href="#"
-                className="p-2 rounded-lg bg-card border border-border/50 text-muted-foreground hover:text-accent hover:border-accent/30 transition-all"
-                aria-label="Twitter"
-              >
-                <Twitter className="w-5 h-5" />
-              </Link>
-              <Link
-                href="#"
+                href="https://www.linkedin.com/in/kaushal-kumar-it"
                 className="p-2 rounded-lg bg-card border border-border/50 text-muted-foreground hover:text-accent hover:border-accent/30 transition-all"
                 aria-label="LinkedIn"
+                target="_blank"
+                rel="noreferrer"
               >
                 <Linkedin className="w-5 h-5" />
               </Link>
@@ -78,6 +76,8 @@ export default function Footer() {
                     <Link
                       href={link.href}
                       className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      target={link.href.startsWith('http') ? '_blank' : undefined}
+                      rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
                     >
                       {link.label}
                     </Link>

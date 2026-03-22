@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { HoverBorderGradient } from "@/components/HoverBorderGradient"
 import { motion } from 'framer-motion'
-import { ArrowRight, Play } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
 const ScrambleText = ({ text }: { text: string }) => {
@@ -74,7 +74,7 @@ export default function Hero() {
 </motion.div>
 
         <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight tracking-tight text-foreground">
-          Build with Tailwind UI
+          Build faster with Neel UI
 
           <br />
 
@@ -85,36 +85,36 @@ export default function Hero() {
         </h1>
 
         <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-          Production-ready Tailwind CSS components designed for modern SaaS and applications.
-          Copy, paste, and customize—no dependencies needed.
+          Production-ready React components for modern products.
+          Copy, paste, and customize with a clean Tailwind-first workflow.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
           <Link
-            href="#components"
+            href="/components"
             className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-accent text-accent-foreground font-semibold hover:bg-accent/90 transition-all duration-300 group"
           >
             Explore Components
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Link>
 
-          <HoverBorderGradient onClick={() => alert("Button Clicked!")}>
+          <HoverBorderGradient onClick={() => alert("Coming soon") }>
         <span>Watch Demo</span>
       </HoverBorderGradient>
         </div>
 
         <div className="grid grid-cols-3 gap-6 sm:gap-12 pt-12 sm:pt-16">
           <div>
-            <div className="text-3xl sm:text-4xl font-bold text-accent">150+</div>
-            <p className="text-sm text-muted-foreground">Premium Components</p>
+            <div className="text-3xl sm:text-4xl font-bold text-accent">30+</div>
+            <p className="text-sm text-muted-foreground">Reusable Components</p>
           </div>
           <div>
-            <div className="text-3xl sm:text-4xl font-bold text-accent">10k+</div>
-            <p className="text-sm text-muted-foreground">Developers Trusted</p>
+            <div className="text-3xl sm:text-4xl font-bold text-accent">12</div>
+            <p className="text-sm text-muted-foreground">UI Categories</p>
           </div>
           <div>
-            <div className="text-3xl sm:text-4xl font-bold text-accent">99.9%</div>
-            <p className="text-sm text-muted-foreground">Performance Score</p>
+            <div className="text-3xl sm:text-4xl font-bold text-accent">100%</div>
+            <p className="text-sm text-muted-foreground">Open Source</p>
           </div>
         </div>
 

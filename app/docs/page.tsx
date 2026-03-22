@@ -1,206 +1,132 @@
 import Link from 'next/link';
 
-type DependencyItem = {
-  name: string;
-  version: string;
-  purpose: string;
-};
-
-const coreDependencies: DependencyItem[] = [
-  { name: 'next', version: '16.1.6', purpose: 'App framework, routing, server rendering, and bundling.' },
-  { name: 'react', version: '19.2.3', purpose: 'Component model and UI rendering.' },
-  { name: 'react-dom', version: '19.2.3', purpose: 'DOM renderer for React components.' },
-  { name: 'framer-motion', version: '^12.34.3', purpose: 'Animation and interaction primitives used in UI components.' },
-  { name: 'lucide-react', version: '^0.564.0', purpose: 'Icon library for navigation and interface controls.' },
-  { name: 'react-syntax-highlighter', version: '^16.1.0', purpose: 'Syntax highlighted code blocks in component showcases.' },
-  { name: 'react-tsparticles', version: '^2.12.2', purpose: 'React wrapper for particle-based animated backgrounds.' },
-  { name: 'tsparticles', version: '^3.9.1', purpose: 'Particles engine powering interactive background effects.' },
+const sections = [
+  { id: 'quick-start', label: 'Quick Start' },
+  { id: 'installation', label: 'Installation' },
+  { id: 'usage', label: 'Use a Component' },
+  { id: 'customization', label: 'Customization' },
+  { id: 'support', label: 'Support' },
 ];
 
-const devDependencies: DependencyItem[] = [
-  { name: 'typescript', version: '^5', purpose: 'Static typing and editor tooling.' },
-  { name: 'tailwindcss', version: '^4', purpose: 'Utility-first styling system.' },
-  { name: '@tailwindcss/postcss', version: '^4', purpose: 'PostCSS integration for Tailwind CSS.' },
-  { name: 'eslint', version: '^9', purpose: 'Code linting and quality checks.' },
-  { name: 'eslint-config-next', version: '16.1.6', purpose: 'Next.js linting rules and defaults.' },
-  { name: 'storybook', version: '^10.2.12', purpose: 'Component-driven development and isolated previews.' },
-  { name: '@storybook/nextjs-vite', version: '^10.2.12', purpose: 'Next.js + Vite Storybook framework integration.' },
-  { name: '@storybook/addon-docs', version: '^10.2.12', purpose: 'Storybook docs generation and documentation UI.' },
-  { name: '@storybook/addon-a11y', version: '^10.2.12', purpose: 'Accessibility checks in Storybook.' },
-  { name: '@storybook/addon-onboarding', version: '^10.2.12', purpose: 'Storybook onboarding and guidance.' },
-  { name: '@storybook/addon-vitest', version: '^10.2.12', purpose: 'Vitest integration for Storybook test workflows.' },
-  { name: '@chromatic-com/storybook', version: '^5.0.1', purpose: 'Visual testing and hosted Storybook publishing.' },
-  { name: 'vitest', version: '^4.0.18', purpose: 'Unit and component test runner.' },
-  { name: '@vitest/coverage-v8', version: '^4.0.18', purpose: 'V8 coverage reporting for Vitest.' },
-  { name: '@vitest/browser-playwright', version: '^4.0.18', purpose: 'Browser-mode test execution integration.' },
-  { name: 'playwright', version: '^1.58.2', purpose: 'Browser automation and end-to-end test foundation.' },
-  { name: 'vite', version: '^7.3.1', purpose: 'Fast dev server/build pipeline for Storybook and tooling.' },
-  { name: '@types/node', version: '^20', purpose: 'Type definitions for Node.js APIs.' },
-  { name: '@types/react', version: '^19', purpose: 'Type definitions for React.' },
-  { name: '@types/react-dom', version: '^19', purpose: 'Type definitions for React DOM.' },
-  { name: '@types/react-syntax-highlighter', version: '^15.5.13', purpose: 'Type definitions for syntax highlighter package.' },
+const categories = [
+  'Navigation',
+  'Layout',
+  'Text Effects',
+  'Buttons',
+  'Cards',
+  'Backgrounds',
+  'Forms',
+  'Feedback',
+  'Media',
+  'Scroll',
+  'Data',
+  'Cursor',
 ];
-
-const featureSections = [
-  {
-    title: 'Navigation',
-    items: ['Sliding Pill Tabs', 'Mac Floating Dock', 'Fluid Navigation'],
-  },
-  {
-    title: 'Text Effects',
-    items: ['Typewriter Text', 'Liquid Fill', 'Scramble Text'],
-  },
-  {
-    title: 'Buttons & Cards',
-    items: ['Dot Expand Button', 'Glowing Border Button', 'Magnetic Button', 'Gradient Border Card'],
-  },
-  {
-    title: 'Background Effects',
-    items: ['Interactive Dots', 'Warp Speed Stars', 'Spotlight Grid'],
-  },
-];
-
-const scripts = [
-  { command: 'npm run dev', description: 'Start local development server.' },
-  { command: 'npm run build', description: 'Create a production build.' },
-  { command: 'npm run start', description: 'Run production server after build.' },
-  { command: 'npm run lint', description: 'Run lint checks.' },
-  { command: 'npm run storybook', description: 'Start Storybook on port 6006.' },
-  { command: 'npm run build-storybook', description: 'Generate static Storybook build.' },
-];
-
-const installSteps = [
-  'Clone the repository and install dependencies.',
-  'Run the dev server and open the app in browser.',
-  'Browse components from `/components` and copy snippets from the code tab.',
-  'Use Storybook for isolated component development.',
-];
-
-function DependencyTable({ title, rows }: { title: string; rows: DependencyItem[] }) {
-  return (
-    <section className="rounded-2xl border border-zinc-800 bg-zinc-950/70 overflow-hidden">
-      <div className="border-b border-zinc-800 px-4 py-3 md:px-5">
-        <h3 className="text-base md:text-lg font-semibold text-white">{title}</h3>
-      </div>
-      <div className="overflow-x-auto">
-        <table className="min-w-full text-sm">
-          <thead className="bg-zinc-900/70">
-            <tr>
-              <th className="px-4 py-3 text-left text-zinc-400 font-semibold">Package</th>
-              <th className="px-4 py-3 text-left text-zinc-400 font-semibold">Version</th>
-              <th className="px-4 py-3 text-left text-zinc-400 font-semibold">Purpose</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((item) => (
-              <tr key={item.name} className="border-t border-zinc-800/80 align-top">
-                <td className="px-4 py-3 text-fuchsia-300 font-mono whitespace-nowrap">{item.name}</td>
-                <td className="px-4 py-3 text-cyan-300 font-mono whitespace-nowrap">{item.version}</td>
-                <td className="px-4 py-3 text-zinc-300 min-w-[18rem]">{item.purpose}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </section>
-  );
-}
 
 export default function DocsPage() {
   return (
     <main className="min-h-screen bg-black text-white">
-      <div className="mx-auto w-full max-w-6xl px-4 pb-20 pt-24 md:px-8 md:pt-28">
-        <div className="mb-8 flex items-center justify-between gap-3">
-          <Link href="/" className="text-sm text-zinc-400 hover:text-white transition-colors">
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-8 px-4 pb-20 pt-24 md:px-8 lg:grid-cols-[220px_1fr]">
+        <aside className="lg:sticky lg:top-24 lg:h-fit">
+          <Link href="/" className="mb-6 block text-sm text-zinc-400 transition-colors hover:text-white">
             ← Back to Home
           </Link>
-          <Link href="/components" className="text-sm text-zinc-400 hover:text-white transition-colors">
-            Explore Components →
-          </Link>
-        </div>
-
-        <section className="rounded-2xl border border-zinc-800 bg-gradient-to-b from-zinc-900/80 to-zinc-950/80 p-5 md:p-8 mb-8">
-          <p className="mb-3 inline-flex rounded-full border border-zinc-700 px-3 py-1 text-xs tracking-widest uppercase text-zinc-400">
-            Documentation
-          </p>
-          <h1 className="text-3xl md:text-5xl font-black tracking-tight mb-4">Neel UI Docs</h1>
-          <p className="max-w-3xl text-zinc-300 text-sm md:text-base leading-relaxed">
-            Neel UI is a premium component collection for modern Next.js apps. This documentation covers setup,
-            architecture, available scripts, core dependencies, and how to use every component category in production.
-          </p>
-        </section>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          <section className="lg:col-span-2 rounded-2xl border border-zinc-800 bg-zinc-950/70 p-5 md:p-6">
-            <h2 className="text-xl font-bold mb-4">Quick Start</h2>
-            <ol className="space-y-3 text-zinc-300 text-sm md:text-base list-decimal list-inside">
-              {installSteps.map((step) => (
-                <li key={step}>{step}</li>
+          <div className="rounded-2xl border border-zinc-800 bg-zinc-950/80 p-4">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-zinc-500">Neel UI Docs</p>
+            <nav className="space-y-2">
+              {sections.map((section) => (
+                <a
+                  key={section.id}
+                  href={`#${section.id}`}
+                  className="block rounded-md px-3 py-2 text-sm text-zinc-300 transition-colors hover:bg-zinc-900 hover:text-white"
+                >
+                  {section.label}
+                </a>
               ))}
-            </ol>
-            <div className="mt-5 rounded-xl border border-zinc-800 bg-zinc-900/70 p-4 overflow-x-auto">
-              <pre className="text-xs md:text-sm text-zinc-200">
-{`git clone <your-repo-url>
-cd neel
-npm install
-npm run dev`}
-              </pre>
+            </nav>
+          </div>
+        </aside>
+
+        <div className="space-y-6">
+          <section className="rounded-2xl border border-zinc-800 bg-gradient-to-b from-zinc-900/80 to-zinc-950/80 p-6 md:p-8">
+            <p className="mb-3 inline-flex rounded-full border border-zinc-700 px-3 py-1 text-xs uppercase tracking-widest text-zinc-400">
+              Documentation
+            </p>
+            <h1 className="mb-3 text-3xl font-black tracking-tight md:text-5xl">Build faster with Neel UI</h1>
+            <p className="max-w-3xl text-sm leading-relaxed text-zinc-300 md:text-base">
+              Neel UI is a modern React component library designed for Next.js applications. Use this guide to set up the
+              project, browse components, and ship polished interfaces quickly.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link
+                href="/components"
+                className="rounded-lg bg-white px-4 py-2 text-sm font-semibold text-black transition hover:bg-zinc-200"
+              >
+                Explore Components
+              </Link>
+              <Link
+                href="/support"
+                className="rounded-lg border border-zinc-700 px-4 py-2 text-sm font-semibold text-zinc-200 transition hover:border-zinc-500 hover:text-white"
+              >
+                Contact Support
+              </Link>
             </div>
           </section>
 
-          <section className="rounded-2xl border border-zinc-800 bg-zinc-950/70 p-5 md:p-6">
-            <h2 className="text-xl font-bold mb-4">Tech Stack</h2>
-            <ul className="space-y-2 text-sm md:text-base text-zinc-300">
-              <li><span className="text-white font-medium">Framework:</span> Next.js (App Router)</li>
-              <li><span className="text-white font-medium">UI:</span> React + Tailwind CSS</li>
-              <li><span className="text-white font-medium">Motion:</span> Framer Motion</li>
-              <li><span className="text-white font-medium">Showcase:</span> Storybook</li>
-              <li><span className="text-white font-medium">Typing:</span> TypeScript</li>
+          <section id="quick-start" className="rounded-2xl border border-zinc-800 bg-zinc-950/70 p-6 md:p-8">
+            <h2 className="mb-4 text-2xl font-bold">Quick Start</h2>
+            <ol className="list-inside list-decimal space-y-2 text-sm text-zinc-300 md:text-base">
+              <li>Install dependencies and run the local development server.</li>
+              <li>Open the component gallery from the Components page.</li>
+              <li>Copy the source block for the component you need.</li>
+              <li>Paste it into your project and adjust Tailwind classes to match your brand.</li>
+            </ol>
+          </section>
+
+          <section id="installation" className="rounded-2xl border border-zinc-800 bg-zinc-950/70 p-6 md:p-8">
+            <h2 className="mb-4 text-2xl font-bold">Installation</h2>
+            <p className="mb-4 text-sm text-zinc-300 md:text-base">
+              If you are setting up this repository locally, run the following commands:
+            </p>
+            <div className="overflow-x-auto rounded-xl border border-zinc-800 bg-zinc-900/70 p-4">
+              <pre className="text-xs text-zinc-200 md:text-sm">{`git clone <your-repo-url>
+cd neel
+npm install
+npm run dev`}</pre>
+            </div>
+          </section>
+
+          <section id="usage" className="rounded-2xl border border-zinc-800 bg-zinc-950/70 p-6 md:p-8">
+            <h2 className="mb-4 text-2xl font-bold">Use a Component</h2>
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+              {categories.map((category) => (
+                <div key={category} className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-4">
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-zinc-200">{category}</h3>
+                  <p className="mt-2 text-sm text-zinc-400">Ready-to-use patterns with source code previews.</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section id="customization" className="rounded-2xl border border-zinc-800 bg-zinc-950/70 p-6 md:p-8">
+            <h2 className="mb-4 text-2xl font-bold">Customization</h2>
+            <ul className="space-y-2 text-sm text-zinc-300 md:text-base">
+              <li>Adjust spacing, colors, and typography using Tailwind utility classes.</li>
+              <li>Keep components composition-friendly by passing props from parent sections.</li>
+              <li>Use animation sparingly for clarity and perceived performance.</li>
             </ul>
           </section>
-        </div>
 
-        <section className="rounded-2xl border border-zinc-800 bg-zinc-950/70 p-5 md:p-6 mb-8">
-          <h2 className="text-xl font-bold mb-4">Component Library Coverage</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-            {featureSections.map((section) => (
-              <div key={section.title} className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-4">
-                <h3 className="text-sm font-semibold tracking-wide uppercase text-zinc-200 mb-3">{section.title}</h3>
-                <ul className="space-y-2 text-sm text-zinc-400">
-                  {section.items.map((item) => (
-                    <li key={item}>• {item}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="rounded-2xl border border-zinc-800 bg-zinc-950/70 p-5 md:p-6 mb-8">
-          <h2 className="text-xl font-bold mb-4">NPM Scripts</h2>
-          <div className="overflow-x-auto">
-            <table className="min-w-full text-sm">
-              <thead className="bg-zinc-900/70">
-                <tr>
-                  <th className="px-4 py-3 text-left text-zinc-400 font-semibold">Command</th>
-                  <th className="px-4 py-3 text-left text-zinc-400 font-semibold">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                {scripts.map((script) => (
-                  <tr key={script.command} className="border-t border-zinc-800/80">
-                    <td className="px-4 py-3 font-mono text-cyan-300 whitespace-nowrap">{script.command}</td>
-                    <td className="px-4 py-3 text-zinc-300">{script.description}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <div className="space-y-6">
-          <DependencyTable title="Runtime Dependencies" rows={coreDependencies} />
-          <DependencyTable title="Development Dependencies" rows={devDependencies} />
+          <section id="support" className="rounded-2xl border border-zinc-800 bg-zinc-950/70 p-6 md:p-8">
+            <h2 className="mb-4 text-2xl font-bold">Support</h2>
+            <p className="text-sm text-zinc-300 md:text-base">
+              Need help integrating a component or found an issue? Reach out on the support page and include your
+              environment details with reproduction steps.
+            </p>
+            <Link href="/support" className="mt-4 inline-block text-sm font-semibold text-fuchsia-300 hover:text-fuchsia-200">
+              Go to Support →
+            </Link>
+          </section>
         </div>
       </div>
     </main>
