@@ -11,6 +11,7 @@ export default function SupportPage() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const form = event.currentTarget;
 
     if (!FORMSFREE_ENDPOINT) {
       setStatus('error');
@@ -21,23 +22,34 @@ export default function SupportPage() {
     setStatus('submitting');
     setMessage('');
 
-    const formData = new FormData(event.currentTarget);
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
 
     try {
       const response = await fetch(FORMSFREE_ENDPOINT, {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
-        throw new Error('Request failed');
+        const errorData = await response.json().catch(() => null);
+        const errorMessage = errorData?.errors?.[0]?.message || 'Request failed';
+        throw new Error(errorMessage);
       }
 
       setStatus('success');
       setMessage('Your support request has been sent. We will get back to you soon.');
-      event.currentTarget.reset();
-    } catch {
+      form.reset();
+    } catch (error) {
       setStatus('error');
+      if (error instanceof Error && error.message) {
+        setMessage(error.message);
+        return;
+      }
       setMessage('Unable to submit right now. Please try again in a moment.');
     }
   };
