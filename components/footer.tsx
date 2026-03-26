@@ -21,8 +21,8 @@ const footerSections = [
     title: 'Company',
     links: [
       { label: 'About', href: '/about' },
-      { label: 'Team · Kaushal Kumar (GitHub)', href: 'https://github.com/kaushal-kumar-it' },
-      { label: 'Team · Kaushal Kumar (LinkedIn)', href: 'https://www.linkedin.com/in/kaushal-kumar-it' },
+      { label: 'Team · Kaushal Kumar (GitHub)', href: 'https://github.com/kaushal-kumar-it/neelui' },
+      { label: 'Team · Kaushal Kumar (LinkedIn)', href: 'https://www.linkedin.com/in/kaushal-kumar-a32582294/' },
       { label: 'Contact', href: '/support' },
     ],
   },
