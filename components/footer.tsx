@@ -47,7 +47,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-4">
               <Link
-                href="https://github.com/kaushal-kumar-it"
+                href="https://github.com/kaushal-kumar-it/neelui"
                 className="p-2 rounded-lg bg-card border border-border/50 text-muted-foreground hover:text-accent hover:border-accent/30 transition-all"
                 aria-label="GitHub"
                 target="_blank"
@@ -56,7 +56,7 @@ export default function Footer() {
                 <Github className="w-5 h-5" />
               </Link>
               <Link
-                href="https://www.linkedin.com/in/kaushal-kumar-it"
+                href="https://www.linkedin.com/in/kaushal-kumar-a32582294/"
                 className="p-2 rounded-lg bg-card border border-border/50 text-muted-foreground hover:text-accent hover:border-accent/30 transition-all"
                 aria-label="LinkedIn"
                 target="_blank"
